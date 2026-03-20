@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#07111f" />
+    <meta
+      name="description"
+      content="VODA mobile web app for UV purification, filter tracking, hydration goals, and smart bottle automation."
+    />
+    <title>VODA Mobile Web App</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header card">
+        <div>
+          <p class="eyebrow">VODA · EU smart hydration</p>
+          <h1 id="bottleNameHeading">VODA Bottle</h1>
+          <p class="subtle" id="statusSummary">Connected · Ready for purification</p>
+        </div>
+        <button class="ghost-button" id="installButton" hidden>Install app</button>
+      </header>
+
+      <main class="screen-stack">
+        <section class="screen active" data-screen="home">
+          <div class="hero-card card">
+            <div>
+              <p class="section-label">Live bottle</p>
+              <h2 id="heroVolume">420 ml available</h2>
+              <p class="subtle" id="heroInsight">
+                Your bottle is chilled, filtered, and ready for the next UV cycle.
+              </p>
+            </div>
+            <div class="hero-actions">
+              <button class="primary-button" id="startUvButton">Start UV cycle</button>
+              <button class="secondary-button" data-refill="250">Refill 250 ml</button>
+            </div>
+            <div class="status-grid">
+              <article>
+                <span>Battery</span>
+                <strong id="batteryStat">64%</strong>
+              </article>
+              <article>
+                <span>Filter</span>
+                <strong id="filterStat">78%</strong>
+              </article>
+              <article>
+                <span>Temp</span>
+                <strong id="tempStat">9°C</strong>
+              </article>
+              <article>
+                <span>Next UV</span>
+                <strong id="nextUvStat">In 4h</strong>
+              </article>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="card panel">
+              <div class="panel-header">
+                <div>
+                  <p class="section-label">Hydration progress</p>
+                  <h3 id="hydrationHeadline">1.2L of 2.4L</h3>
+                </div>
+                <span class="badge" id="paceBadge">On pace</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-value" id="hydrationProgress"></div>
+              </div>
+              <div class="quick-grid">
+                <button class="chip-button" data-drink="150">Drink 150 ml</button>
+                <button class="chip-button" data-drink="250">Drink 250 ml</button>
+                <button class="chip-button" data-drink="330">Drink 330 ml</button>
+                <button class="chip-button" data-refill="500">Refill 500 ml</button>
+              </div>
+            </article>
+
+            <article class="card panel">
+              <div class="panel-header">
+                <div>
+                  <p class="section-label">UV cycle</p>
+                  <h3 id="uvHeadline">No cycle running</h3>
+                </div>
+                <span class="badge accent" id="uvModeBadge">Smart mode</span>
+              </div>
+              <div class="progress-track compact">
+                <div class="progress-value uv" id="uvProgress"></div>
+              </div>
+              <div class="stat-list">
+                <div><span>Last sanitize</span><strong id="lastSanitize">Today, 08:30</strong></div>
+                <div><span>Cycle history</span><strong id="uvCount">0 completed</strong></div>
+                <div><span>Travel lock</span><strong id="travelLockLabel">Off</strong></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="hydrate">
+          <article class="card panel">
+            <div class="panel-header form-header">
+              <div>
+                <p class="section-label">Daily plan</p>
+                <h2>Hydration coaching</h2>
+              </div>
+              <button class="ghost-button" id="resetDayButton">Reset today</button>
+            </div>
+            <form class="form-grid" id="goalForm">
+              <label>
+                Daily goal (ml)
+                <input type="number" min="500" step="50" id="goalInput" />
+              </label>
+              <label>
+                Custom drink (ml)
+                <input type="number" min="50" step="10" id="customDrinkInput" placeholder="e.g. 200" />
+              </label>
+              <button class="primary-button" type="submit">Save goal & log drink</button>
+            </form>
+            <div class="info-grid two-up">
+              <article>
+                <span>Remaining today</span>
+                <strong id="remainingToday">1.2L</strong>
+              </article>
+              <article>
+                <span>Current bottle volume</span>
+                <strong id="currentVolumeStat">420 ml</strong>
+              </article>
+            </div>
+          </article>
+
+          <article class="card panel">
+            <div class="panel-header">
+              <div>
+                <p class="section-label">Drink history</p>
+                <h3>Today’s events</h3>
+              </div>
+            </div>
+            <ul class="activity-list" id="hydrationHistory"></ul>
+          </article>
+        </section>
+
+        <section class="screen" data-screen="purify">
+          <article class="card panel">
+            <div class="panel-header">
+              <div>
+                <p class="section-label">Purification controls</p>
+                <h2>UV-C automation</h2>
+              </div>
+            </div>
+            <div class="quick-grid two-up">
+              <button class="primary-button" data-cycle="90">Quick sanitize · 90s</button>
+              <button class="secondary-button" data-cycle="180">Deep sanitize · 180s</button>
+              <button class="secondary-button" id="capSanitizeButton">Sanitize cap</button>
+              <button class="secondary-button" id="chargeButton">Boost battery</button>
+            </div>
+            <form class="form-grid" id="scheduleForm">
+              <label>
+                UV schedule interval (hours)
+                <input type="number" min="1" max="24" id="scheduleInput" />
+              </label>
+              <label class="toggle-row">
+                <span>Auto sanitize after refill</span>
+                <input type="checkbox" id="autoSanitizeInput" />
+              </label>
+              <label class="toggle-row">
+                <span>Travel lock</span>
+                <input type="checkbox" id="travelLockInput" />
+              </label>
+              <label class="toggle-row">
+                <span>Silent mode</span>
+                <input type="checkbox" id="silentModeInput" />
+              </label>
+              <button class="primary-button" type="submit">Save automation</button>
+            </form>
+          </article>
+
+          <article class="card panel">
+            <div class="panel-header">
+              <div>
+                <p class="section-label">UV history</p>
+                <h3>Recent cycles</h3>
+              </div>
+            </div>
+            <ul class="activity-list" id="uvHistory"></ul>
+          </article>
+        </section>
+
+        <section class="screen" data-screen="filter">
+          <article class="card panel">
+            <div class="panel-header">
+              <div>
+                <p class="section-label">Filter health</p>
+                <h2>Cartridge management</h2>
+              </div>
+              <button class="ghost-button" id="replaceFilterButton">Replace filter</button>
+            </div>
+            <div class="info-grid">
+              <article>
+                <span>Life remaining</span>
+                <strong id="filterLifeLabel">78%</strong>
+              </article>
+              <article>
+                <span>Liters processed</span>
+                <strong id="litersFilteredLabel">24.6 L</strong>
+              </article>
+              <article>
+                <span>Age</span>
+                <strong id="filterAgeLabel">18 days</strong>
+              </article>
+              <article>
+                <span>Quality profile</span>
+                <strong id="qualityProfileLabel">Home tap</strong>
+              </article>
+            </div>
+            <form class="form-grid" id="filterForm">
+              <label>
+                Water source
+                <select id="qualityProfileInput">
+                  <option value="Home tap">Home tap</option>
+                  <option value="Office refill">Office refill</option>
+                  <option value="Travel refill">Travel refill</option>
+                  <option value="Mixed usage">Mixed usage</option>
+                </select>
+              </label>
+              <label>
+                Filter notes
+                <textarea id="filterNotesInput" rows="3" placeholder="Taste, flow, supplier, reminders..."></textarea>
+              </label>
+              <button class="primary-button" type="submit">Save filter settings</button>
+            </form>
+          </article>
+        </section>
+
+        <section class="screen" data-screen="settings">
+          <article class="card panel">
+            <div class="panel-header">
+              <div>
+                <p class="section-label">Device settings</p>
+                <h2>Personalize your bottle</h2>
+              </div>
+            </div>
+            <form class="form-grid" id="settingsForm">
+              <label>
+                Bottle name
+                <input type="text" id="bottleNameInput" maxlength="32" />
+              </label>
+              <label>
+                Capacity (ml)
+                <input type="number" min="300" max="2000" step="10" id="capacityInput" />
+              </label>
+              <label>
+                Temperature unit
+                <select id="temperatureUnitInput">
+                  <option value="C">Celsius</option>
+                  <option value="F">Fahrenheit</option>
+                </select>
+              </label>
+              <label>
+                Language
+                <select id="languageInput">
+                  <option value="English">English</option>
+                  <option value="Deutsch">Deutsch</option>
+                  <option value="Français">Français</option>
+                  <option value="Español">Español</option>
+                </select>
+              </label>
+              <label class="toggle-row">
+                <span>Hydration reminders</span>
+                <input type="checkbox" id="notificationsInput" />
+              </label>
+              <button class="primary-button" type="submit">Save preferences</button>
+            </form>
+            <div class="info-grid two-up">
+              <article>
+                <span>Region</span>
+                <strong>European Union</strong>
+              </article>
+              <article>
+                <span>Privacy</span>
+                <strong>Stored on-device only</strong>
+              </article>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <nav class="bottom-nav card" aria-label="Primary navigation">
+        <button class="nav-button active" data-target="home">Home</button>
+        <button class="nav-button" data-target="hydrate">Hydrate</button>
+        <button class="nav-button" data-target="purify">Purify</button>
+        <button class="nav-button" data-target="filter">Filter</button>
+        <button class="nav-button" data-target="settings">Settings</button>
+      </nav>
+    </div>
+
+    <div class="toast" id="toast" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
