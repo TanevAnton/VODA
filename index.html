@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VODA Smart Bottle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <nav class="topbar">
+          <div>
+            <p class="eyebrow">VODA · EU Smart Hydration</p>
+            <h1>Control your UV-purifying thermos and filter system in one app.</h1>
+          </div>
+          <button class="secondary-button" id="pairBottleButton">Pair bottle</button>
+        </nav>
+
+        <section class="hero-grid">
+          <article class="hero-copy card glass-card">
+            <p class="section-label">Live bottle status</p>
+            <h2>Your water stays fresh, filtered, and ready for every commute.</h2>
+            <p class="hero-description">
+              Built for an EU launch, VODA combines UV-C sanitization, filter-health monitoring,
+              hydration coaching, and travel-safe automation for a premium thermos experience.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" id="uvCycleButton">Start UV cycle</button>
+              <button class="secondary-button" id="refillButton">Log refill</button>
+            </div>
+            <div class="status-pills">
+              <span>UV chamber ready</span>
+              <span>Filter 78% remaining</span>
+              <span>Battery 64%</span>
+            </div>
+          </article>
+
+          <aside class="hero-dashboard card">
+            <div class="dashboard-heading">
+              <div>
+                <p class="section-label">Bottle dashboard</p>
+                <h3>Thermos A01</h3>
+              </div>
+              <span class="online-indicator">Connected</span>
+            </div>
+            <div class="temperature-ring">
+              <div>
+                <strong>9°C</strong>
+                <span>Current water temp</span>
+              </div>
+            </div>
+            <div class="mini-stats">
+              <div>
+                <span>Capacity</span>
+                <strong>620 ml</strong>
+              </div>
+              <div>
+                <span>Purity score</span>
+                <strong>96 / 100</strong>
+              </div>
+              <div>
+                <span>Next UV cycle</span>
+                <strong>18 min</strong>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </header>
+
+      <main>
+        <section class="card spotlight-grid">
+          <article>
+            <p class="section-label">Hydration goals</p>
+            <div class="metric-row">
+              <div>
+                <h3>1.7L / 2.4L</h3>
+                <p>Today's intake target based on weather, activity, and commute schedule.</p>
+              </div>
+              <div class="progress-card">
+                <div class="progress-bar">
+                  <div class="progress-value" style="width: 71%"></div>
+                </div>
+                <span>71% complete</span>
+              </div>
+            </div>
+          </article>
+          <article>
+            <p class="section-label">Filter lifecycle</p>
+            <div class="metric-row">
+              <div>
+                <h3>18 days left</h3>
+                <p>Smart reminders estimate cartridge replacement before taste or flow degrades.</p>
+              </div>
+              <button class="secondary-button">Order replacement</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="feature-section">
+          <div class="section-header">
+            <div>
+              <p class="section-label">Core app modules</p>
+              <h2>Everything your connected bottle needs from day one.</h2>
+            </div>
+            <p class="section-copy">
+              This interface packages the premium product story around UV sanitization, filtered
+              drinking water, and EU-focused customer trust.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="card feature-card accent-blue">
+              <span class="feature-icon">✦</span>
+              <h3>UV cycle orchestration</h3>
+              <p>
+                Trigger instant or scheduled purification cycles, monitor sanitization history,
+                and receive alerts when the cap is open or charging is low.
+              </p>
+            </article>
+            <article class="card feature-card accent-green">
+              <span class="feature-icon">⟲</span>
+              <h3>Filter intelligence</h3>
+              <p>
+                Track filter condition, estimated flow loss, cartridge age, and refill quality so
+                customers know when to replace consumables.
+              </p>
+            </article>
+            <article class="card feature-card accent-purple">
+              <span class="feature-icon">☼</span>
+              <h3>Travel-safe routines</h3>
+              <p>
+                Enable airplane lock, silent-night mode, and automatic UV schedules tailored for
+                workdays, gyms, and weekend trips.
+              </p>
+            </article>
+            <article class="card feature-card accent-gold">
+              <span class="feature-icon">✓</span>
+              <h3>EU compliance storytelling</h3>
+              <p>
+                Surface CE readiness, warranty registration, privacy controls, multilingual tips,
+                and support guidance for an EU launch motion.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="insights-grid">
+          <article class="card timeline-card">
+            <div class="section-header compact">
+              <div>
+                <p class="section-label">Weekly insights</p>
+                <h2>Personalized hydration coaching</h2>
+              </div>
+            </div>
+            <ul class="timeline-list">
+              <li>
+                <strong>08:30</strong>
+                <div>
+                  <h4>Morning UV cycle completed</h4>
+                  <p>Water purified before your train commute.</p>
+                </div>
+              </li>
+              <li>
+                <strong>11:45</strong>
+                <div>
+                  <h4>Hydration reminder sent</h4>
+                  <p>You are 320 ml behind your target pace.</p>
+                </div>
+              </li>
+              <li>
+                <strong>16:20</strong>
+                <div>
+                  <h4>Filter flow dropped 4%</h4>
+                  <p>Replacement recommended in 18 days.</p>
+                </div>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card automation-card">
+            <p class="section-label">Automation presets</p>
+            <h2>One-tap modes for real-life routines</h2>
+            <div class="preset-list">
+              <button class="preset active" data-preset="commute">
+                <span>Commute</span>
+                <small>UV every 4 hrs · alert at 1.8L</small>
+              </button>
+              <button class="preset" data-preset="office">
+                <span>Office</span>
+                <small>Silent reminders · temp tracking</small>
+              </button>
+              <button class="preset" data-preset="travel">
+                <span>Travel</span>
+                <small>Airplane lock · battery saver</small>
+              </button>
+            </div>
+            <div class="preset-details" id="presetDetails">
+              <h3>Commute mode active</h3>
+              <p>
+                VODA will sanitize every 4 hours, send refill reminders after 450 ml, and reduce
+                brightness while you are moving.
+              </p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
