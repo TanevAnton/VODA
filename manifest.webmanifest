@@ -1,0 +1,23 @@
+{
+  "name": "VODA Mobile Web App",
+  "short_name": "VODA",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#050b15",
+  "theme_color": "#07111f",
+  "description": "Mobile web app for a smart thermos with UV purification, filter tracking, and hydration coaching.",
+  "icons": [
+    {
+      "src": "./icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
